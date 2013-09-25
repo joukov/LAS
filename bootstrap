@@ -1,0 +1,11 @@
+#!/bin/sh
+
+touch NEWS
+touch README
+touch AUTHORS
+touch ChangeLog
+
+aclocal
+autoheader
+automake --add-missing --copy
+autoconf

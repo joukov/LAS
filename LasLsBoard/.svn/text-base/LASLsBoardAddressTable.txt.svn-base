@@ -1,0 +1,62 @@
+*item                   AM      width   address         mask            read    write   description
+*
+************************
+* Laser Board Commands *
+************************
+RunModeOff		0d	4	00100000	ffffffff	1	1	Switch Run Mode Off
+RunModeOn		0d	4	00120000	ffffffff	1	1	Switch Run Mode On
+ManTriggerOff		0d	4	00140000	ffffffff	1	1	Switch Manual Triggers Off
+ManTriggerOn		0d	4	00160000	ffffffff	1	1	Switch Manual Triggers On
+TriggerGenOff		0d	4	00180000	ffffffff	1	1	Switch Trigger Generator Off
+TriggerGenOn		0d	4	001A0000	ffffffff	1	1	Switch Trigger Generator On
+LsModTestOff		0d	4	001C0000	ffffffff	1	1	Switch Laser Module Test Off
+LsModTestOn		0d	4	001E0000	ffffffff	1	1	Switch Laser Module Test On
+ResetInterlock		0d	4	00000000	ffffffff	1	1	Reset Interlock Flag
+*
+********************
+* Laser Module RAM *
+********************
+MemWriteEnable		0d	4	00020000	ffffffff	1	1	Memory Write Enable
+MemWrtEnDelay		0d	4	00020000	ffffffff	1	1	Delay Memory Write Enable
+MemWrtEnWidth		0d	4	00020200	ffffffff	1	1	Width Memory Write Enable
+MemWrtEnAmp		0d	4	00020400	ffffffff	1	1	Amplitude Memory Write Enable
+MemWrite		0d	4	00040000	ffffffff	0	1	Memory Write
+MemRead			0d	4	00040000	00000fff	1	0	Memory Read
+MemReadDelay		0d	4	00040000	000000ff	1	0	Delay Memory Read
+MemReadWidth		0d	4	00040000	000000ff	1	0	Width Memory Read
+MemReadAmp		0d	4	00040000	00000fff	1	0	Amplitude Memory Read
+StartLdSeq		0d	4	00060000	ffffffff	1	1	Start Loading the Sequence
+*
+**************************
+* Laser Module Registers *
+**************************
+ClearDevice		0d	4	00080000	00000fff	1	1	Clear all DACs
+WriteLsModReg		0d	4	000A0000	00000fff	0	1	Write Laser Module Register
+ReadLsModReg		0d	4	000A0000	00000fff	1	0	Read Laser Module Register
+GetLsModDelay		0d	4	000A0000	00000fff	1	0	Get Laser Module Delay
+GetLsModWidth		0d	4	000A0200	00000fff	1	0	Get Laser Module Width
+GetLsModAmpl		0d	4	000A0400	00000fff	1	0	Get Laser Module Amplitude
+GetLsModBias		0d	4	000A0600	00000fff	1	0	Get Laser Module Bias
+GetLsModThr		0d	4	000A0800	00000fff	1	0	Get Laser Module Threshold
+SetLsModBias		0d	4	000A0600	00000fff	0	1	Set Laser Module Bias
+SetLsModThr		0d	4	000A0800	00000fff	0	1	Set Laser Module Threshold
+ClearLDT		0d	4	000A1E00	ffffffff	1	1	Clear Laser Diode Trip
+*
+*************************
+* Laser Board Registers *
+*************************
+LaserOnSel		0d	4	000C0000	000000ff	1	1	Get/Set Selected Laser Modules
+FaultIgnore		0d	4	000C0200	000000ff	1	1	Get/Set Fault Ignore
+LaserOn			0d	4	000C0400	000000ff	1	0	Check if Laser is ON
+LaserDiodeTrip		0d	4	000C0600	000000ff	1	0	Laser Diode Trip
+ShotPtr			0d	4	000C0800	000000ff	1	0	Get Shot Pointer
+RepeatCounter		0d      4       000C0A00        0000001f        1       1       Get/Set RepeatCounter
+ExecCounter		0d	4	000C0C00	0000001f	1	0	Read Execution Counter
+TablesLoaded03		0d      4       000C1000        0000ffff        1       0       Check if Tables are loaded (Modules 0-3)
+TablesLoaded47		0d      4       000C1200        0000ffff        1       0       Check if Tables are loaded (Modules 4-7)
+WriteFlags03		0d	4	000C1400	0000ffff	1	0	Get Write Flags (Modules 0-3)
+WriteFlags47		0d	4	000C1600	0000ffff	1	0	Get Write Flags (Modules 4-7)
+WritePtr		0d	4	000C1800	0000ffff	1	0	Get Write Pointer
+GenFlags		0d	4	000C1A00	0000007f	1	0	Get General Flags
+ReadBoardId		0d	4	000E0000	000000ff	1	0	Read Board ID 
+*

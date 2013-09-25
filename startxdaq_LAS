@@ -1,0 +1,33 @@
+export XDAQ_ROOT=/opt/xdaq
+export XDAQ_OS=linux
+export XDAQ_PLATFORM=x86_slc4
+export XDAQ_DOCUMENT_ROOT=$XDAQ_ROOT/htdocs
+
+# source /opt/xdaq/bin/environment.csh
+
+export LD_LIBRARY_PATH
+export LD_LIBRARY_PATH="./:$XDAQ_ROOT/daq/xdaq/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$XDAQ_ROOT/daq/extern/xerces/${XDAQ_OS}${XDAQ_PLATFORM}/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xtuple/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/extern/asyncresolv/${XDAQ_OS}${XDAQ_PLATFORM}/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/toolbox/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xoap/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/pt/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xdaq/executive/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xdaq/hyperdaq/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/pt/fifo/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/pt/http/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/extern/log4cplus/${XDAQ_OS}${XDAQ_PLATFORM}/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/extern/mimetic/${XDAQ_OS}${XDAQ_PLATFORM}/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/extern/log4cplus/udpappender/lib/${XDAQ_OS}/${XDAQ_PLATFORM}:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/extern/log4cplus/xmlappender/lib/${XDAQ_OS}/${XDAQ_PLATFORM}:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/extern/cgicc/${XDAQ_OS}${XDAQ_PLATFORM}/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xdata/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xcept/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xgi/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xrelay/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xplore/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$XDAQ_ROOT/daq/xplore/xslp/lib/${XDAQ_OS}/${XDAQ_PLATFORM}/:$LD_LIBRARY_PATH"
+
+
+/opt/xdaq/bin//xdaq.sh -p 40000 -c LAS_config_CRAFT09_c.xml
+

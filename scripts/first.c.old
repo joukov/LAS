@@ -1,0 +1,94 @@
+#include <stdio.h>
+
+int main()
+{
+// printf("\n hello world ! \n");
+ printf("*iitem                   AM      width   address         mask            read    write   description\n");
+ printf("*\n");
+
+int lbModule,ram,addr;
+
+lbModule=0;
+
+long function;
+ 
+//////////////////////////////////////////////////////
+// Memory Write Enable 8LM x 3 Registers = 24 Entries
+//////////////////////////////////////////////////////
+ 
+for (lbModule=0; lbModule < 8 ; lbModule++)
+{
+  for (ram=0; ram<3; ram++)
+  { function= (1 << 16 | lbModule << 12 | ram << 8) << 1;
+    printf("MemoryWriteEnable%d%d     0d      4       000%x        ffffffff        1       1       Mem Wri En LM%d Reg%d\n",lbModule,ram,function,lbModule,ram); 
+
+  }
+
+}
+
+
+/////////////////////////////////////////////////////
+// Read Status of Register  2 Entries
+//////////////////////////////////////////////////////
+
+
+ printf("*\n");
+ printf("MemoryWriteAll          0d      4       0002E400        ffffffff        1       1       Mem Write\n");
+ printf("*\n");
+ printf("ReadStatusRegister1     0d      4       000C1400        ffffffff        1       0       Read Stat  LM 0-3\n");
+ printf("ReadStatusRegister2     0d      4       000C1600        ffffffff        1       0       Read Stat  LM 4-7\n");
+
+
+
+//////////////////////////////////////////////////////
+// Memory Read  8LM x 3 Registers x 128   Entries
+//////////////////////////////////////////////////////
+
+ printf("*\n");
+
+for (lbModule=0; lbModule < 8 ; lbModule++)
+{
+ for (ram=0; ram<3; ram++)
+ { 
+  for (addr=0; addr <128 ;addr++)
+  { function= (2 << 16 | lbModule << 12 | ram << 8 | addr) << 1;
+    
+   //printf("MemoryRead%d%d%3d",lbModule,ram,addr);
+ 
+   char str[50];
+   if (addr<10)              sprintf(str,"MemoryRead%d%d00%d",lbModule,ram,addr); 
+   if (addr>=10&&addr<100)   sprintf(str,"MemoryRead%d%d0%d",lbModule,ram,addr);
+   if (addr>=100)            sprintf(str,"MemoryRead%d%d%d",lbModule,ram,addr);
+   
+   printf("str is %s ",str);
+
+   if (addr<10) 
+    {  printf("MemoryRead%d%d00%d         0d      4       000%x        ffffffff        1       1       Mem Read\n", 
+       lbModule,ram,addr,function);
+    }
+    if (addr>=10&&addr<100)
+    {  printf("MemoryRead%d%d0%d         0d      4       000%x        ffffffff        1       1       Mem Read\n",
+       lbModule,ram,addr,function);
+    }
+    if (addr>=100)
+    {  printf("MemoryRead%d%d%d         0d      4       000%x        ffffffff        1       1       Mem Read\n",
+       lbModule,ram,addr,function);
+    }
+
+
+    
+  }  //addr
+ }  //ram
+}  //lbModule
+
+printf("*\n");
+
+
+
+//printf("\nMemoryWriteEnable00     0d      4       00020000        ffffffff        1       1       Mem Wri En LM0 Reg0");
+
+ 
+
+
+
+}

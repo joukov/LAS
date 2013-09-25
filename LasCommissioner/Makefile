@@ -1,0 +1,190 @@
+# $Id: Makefile,v 1.3 2013/01/21 15:14:36 agiassi Exp $
+
+#########################################################################
+# XDAQ Components for Distributed Data Acquisition                      #
+# Copyright (C) 2000-2004, CERN.			                #
+# All rights reserved.                                                  #
+# Authors: J. Gutleber and L. Orsini					#
+#                                                                       #
+# For the licensing terms see LICENSE.		                        #
+# For the list of contributors see CREDITS.   			        #
+#########################################################################
+
+##
+#
+# This is the example Makefile
+#
+# make Library=ExampleName
+#
+##
+
+LIB_DEST ?= 
+LIB_FILES = ./lib/$(XDAQ_OS)/$(XDAQ_PLATFORM)/*.so 
+
+
+XDAQ_ROOT_DIR= /opt/xdaq
+XDAQ_BASE=/opt/xdaq
+XDAQ_ROOT=/opt/xdaq
+#XDAQ_ROOT:=${ENV_CMS_TK_LASTGBOARD}
+XDAQ_OS=linux
+XDAQ_PLATFORM=x86_64_slc5
+XDAQ_RPMBUILD=
+
+include $(XDAQ_ROOT)/config/mfAutoconf.rules
+include $(XDAQ_ROOT)/config/mfDefs.$(XDAQ_OS)
+
+# KH, now reset xdaq_root to compile in local dir
+#XDAQ_ROOT=`pwd`/../
+BUILD_HOME=../
+HALDIR = /opt/xdaq
+CAEN_ROOT=/opt/xdaq
+XERCESCROOT=/opt/xdaq
+
+#Project=LAS
+Package=LasCommissioner
+
+ifdef Library
+Sources= src/$(Library).cc
+else
+Library=LasCommissioner
+Sources =\
+	src/LasCommissioner.cc
+endif
+
+# External libs that are common for standard Build and RPM Build
+COMMON_EXTERNAL_LIBS=\
+		-lxerces-c \
+		-lGenericHAL \
+		-lxcept \
+		-lpthread_nonshared \
+		-lCAENLinuxBusAdapter \
+		-lDummyBusAdapters \
+		-lCAENVME \
+		-ltoolbox \
+		-lxoap
+
+
+
+ifeq ($(XDAQ_RPMBUILD),yes)
+IncludeDirs = \
+	$(XDAQ_BASE)/include/xercesc/ \
+	$(XDAQ_BASE)/include/log4cplus/ \
+	$(XDAQ_BASE)/include/cgicc/ \
+	$(XDAQ_BASE)/include/toolbox/ \
+	$(XDAQ_BASE)/include/toolbox/$(XDAQ_OS) \
+	$(XDAQ_BASE)/include/toolbox/include/solaris \
+	- \
+	$(XDAQ_BASE)/include/xoap/ \
+	$(XDAQ_BASE)/include/xdata/ \
+	$(XDAQ_BASE)/include/pt/ \
+	$(XDAQ_BASE)/include/xcept/ \
+	$(XDAQ_BASE)/include/xgi/ \
+	$(XDAQ_BASE)/include/i2o// \
+	$(XDAQ_BASE)/include/i2o/shared \
+	$(XDAQ_BASE)/include \
+	$(XDAQ_BASE)/include/solaris \
+	$(XDAQ_BASE)/include/linux\
+	$(CAEN_ROOT)/include\
+	$(HALINCLUDEDIR)\
+	./include \
+	../LasCommon/include
+
+LibraryDirs = $(XDAQ_BASE)/lib $(CAEN_ROOT)/lib/$(XDAQ_PLATFORM)
+#HALINCLUDEDIR = $(HALDIR)/hal/include
+HALINCLUDEDIR = $(HALDIR)/include/hal
+ExternalObjects = -L$(XDAQ_BASE)/lib \
+		$(COMMON_EXTERNAL_LIBS)
+else
+IncludeDirs = \
+	$(XDAQ_BASE)/daq/toolbox/include \
+	$(XDAQ_BASE)/daq/toolbox/include/$(XDAQ_OS) \
+	$(XDAQ_BASE)/daq/toolbox/include/solaris \
+	$(XDAQ_BASE)/daq/extern/xerces/$(XDAQ_OS)$(XDAQ_PLATFORM)/include \
+	$(XDAQ_BASE)/daq/extern/log4cplus/$(XDAQ_OS)$(XDAQ_PLATFORM)/include \
+	$(XDAQ_BASE)/daq/extern/cgicc/$(XDAQ_OS)$(XDAQ_PLATFORM)/include \
+	$(XDAQ_BASE)/daq/xoap/include \
+	$(XDAQ_BASE)/daq/xdata/include \
+	$(XDAQ_BASE)/daq/pt/include \
+	$(XDAQ_BASE)/daq/xcept/include \
+	$(XDAQ_BASE)/daq/xgi/include \
+	$(XDAQ_BASE)/daq/ \
+	$(XDAQ_BASE)/daq/extern/i2o/include/ \
+	$(XDAQ_BASE)/daq/extern/i2o/include/i2o \
+	$(XDAQ_BASE)/daq/extern/i2o/include/i2o/shared \
+	$(XDAQ_BASE)/daq/xdaq/include \
+	$(XDAQ_BASE)/daq/xdaq/include/solaris \
+	$(XDAQ_BASE)/daq/xdaq/include/linux\
+	$(XDAQ_BASE)/daq/extern/log4cplus/log4cplus-1.0.2/include\
+	$(XDAQ_BASE)/daq/config/include \
+	$(XDAQ_BASE)/daq/extern/cgicc/$(XDAQ_PLATFORM)/include\
+	$(CAEN_ROOT)/include\
+	$(HALINCLUDEDIR)\
+	./include \
+	../LasCommon/include
+
+LibraryDirs = $(XDAQ_BASE)/daq/xoap/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	$(XDAQ_BASE)/daq/extern/xerces/$(XDAQ_OS)$(XDAQ_PLATFORM)/lib \
+	$(XDAQ_BASE)/daq/toolbox/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	$(XDAQ_BASE)/daq/xdata/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	$(XDAQ_BASE)/daq/pt/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	$(XERCESCROOT)/lib
+
+HALINCLUDEDIR = $(HALDIR)/include/hal
+#HALINCLUDEDIR = $(HALDIR)/generic/include \
+#		$(HALDIR)/generic/include/hal \
+#		$(HALDIR)/busAdapter/include \
+#	        $(HALDIR)/busAdapter/caen/include/hal \
+#	        $(HALDIR)/busAdapter/caen/include \
+#	        $(HALDIR)/busAdapter/dummy/include \
+#	        $(HALDIR)/busAdapter/dummy/include/hal \
+#		$(HALDIR)/utilities/include \
+#		$(HALDIR)/generic/include/linux \
+
+ExternalObjects = -L$(XDAQ_BASE)/daq/xoap/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	-L$(XDAQ_BASE)/daq/toolbox/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	-L$(XDAQ_BASE)/daq/xdata/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	-L$(XDAQ_BASE)/daq/pt/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	-L$(XDAQ_BASE)/daq/xcept/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	-L$(HAL_DIR)/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	-L$(HALDIR)/busAdapter/lib/$(XDAQ_OS)/$(XDAQ_PLATFORM) \
+	-L$(ENV_CMS_TK_CAEN_ROOT)/lib \
+	-L$(XERCESCROOT)/lib \
+	-L$(HALDIR)/$(XDAQ_PLATFORM)/lib \
+	$(COMMON_EXTERNAL_LIBS)
+endif
+
+UserCFlags =
+UserCCFlags = -g
+UserDynamicLinkFlags =
+UserStaticLinkFlags =
+UserExecutableLinkFlags =
+
+# These libraries can be platform specific and
+# potentially need conditional processing
+#
+
+Libraries = 
+
+
+#
+# Compile the source files and create a shared library
+#
+ifdef Library
+DynamicLibrary= $(Library)
+endif
+
+StaticLibrary=
+
+ifdef Executable
+Libraries=toolbox xoap xerces-c
+Executables= $(Executable).cc
+endif
+
+include $(XDAQ_BASE)/config/Makefile.rules
+
+
+# KH for easy installation ...
+install:
+	if [[ "x$(LIB_DEST)" != x ]] ; then \
+	cp -rf $(LIB_FILES) $(LIB_DEST)	; \
+	fi

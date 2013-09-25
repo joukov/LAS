@@ -1,0 +1,12 @@
+*item			AM	width	address		mask		read	write	description
+*
+Delay			0d	4	00000000	0000007f	1	1	trigger delay in 25ns steps
+Status			0d	4	00000002	00000001	1	0	0 = test mode OFF
+*											1 = test mode ON
+TestModeOn		0d	4	00000004	ffffffff	0	1	switches Test Mode On
+TestModeOff		0d	4	00000006	ffffffff	1	1	switches Test Mode Off
+SimulateTriggerTTCA	0d	4	00000008	ffffffff	1	1	Simulate Trigger on TTCA
+SimulateTriggerTTCB	0d	4	0000000A	ffffffff	1	1	Simulate Trigger on TTCB
+SimulateTriggerTTCC	0d	4	0000000C	ffffffff	1	1	Simulate Trigger on TTCC
+SimulateTriggerTTCD	0d	4	0000000E	ffffffff	1	1	Simulate Trigger on TTCD
+*

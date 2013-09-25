@@ -1,0 +1,35 @@
+export ENV_CMS_TK_BASE=/exports/xdaq/tifdev
+export XDAQ_BASE=${ENV_CMS_TK_BASE}/TriDAS
+export XDAQ_ROOT=${XDAQ_BASE}
+export ENV_CMS_TK_APVE_ROOT=${ENV_CMS_TK_BASE}/APVE
+export APVE_ROOT=${ENV_CMS_TK_APVE_ROOT}
+export ENV_CMS_TK_FED9U_ROOT=${ENV_CMS_TK_BASE}/TrackerOnline/Fed9U/Fed9USoftware
+export ENV_CMS_TK_FEC_ROOT=${ENV_CMS_TK_BASE}/FecSoftwareV3_0/
+export ENV_CMS_TK_LASTGBOARD=${ENV_CMS_TK_BASE}/LAS
+export ENV_CMS_TK_TTCCI_ROOT=${ENV_CMS_TK_BASE}/TTCSoftware
+export ENV_CMS_TK_LTC_ROOT=${ENV_CMS_TK_BASE}/TTCSoftware
+export ENV_CMS_TK_TTC_ROOT=${ENV_CMS_TK_BASE}/TTCSoftware
+export ENV_CMS_TK_HARDWARE_ROOT=${ENV_CMS_TK_BASE}/TrackerOnline/2005/hardware/
+export ENV_CMS_TK_COMMON=${ENV_CMS_TK_BASE}/TrackerOnline/2005/TrackerCommon/
+export ENV_CMS_TK_ICUTILS=${ENV_CMS_TK_COMMON}/ICUtils
+export ENV_CMS_TK_XDAQ=${ENV_CMS_TK_BASE}/TrackerOnline/2005/TrackerXdaq/
+#export ENV_CMS_TK_CAEN_ROOT=${ENV_CMS_TK_HARDWARE_ROOT}/CAEN/CAEN-VME/Linux
+export ENV_CMS_TK_CAEN_ROOT=/usr/local/CAEN/CAEN-VME/Linux
+export ENV_CMS_TK_SBS_ROOT=${ENV_CMS_TK_HARDWARE_ROOT}/SBS/1003/v2p3p0/
+export ENV_CMS_TK_HAL_ROOT=${XDAQ_BASE}/daq/hal
+export ENV_CMS_TK_HAL_VERSION=`cat $ENV_CMS_TK_HAL_ROOT/thisVersion.txt | awk '{print $1}'`
+export XERCESCROOT=${XDAQ_BASE}/daq/extern/xerces/linuxx86/
+export ENV_CMS_TK_DIAG_ROOT=${ENV_CMS_TK_BASE}/DiagSystem
+export ANT_HOME=${ENV_CMS_TK_BASE}/BinForDiag/apache-ant-1.6.2
+export JAVA_HOME=${ENV_CMS_TK_BASE}/BinForDiag/jdk1.5.0_06
+export PATH=$PATH:$ANT_HOME/bin:$JAVA_HOME/bin
+export ROOTSYS=/afs/cern.ch/cms/sw/slc3_ia32_gcc323/lcg/root/5.12.00a/root
+#export ROOTSYS=/exports/xdaq/root510
+export PATH=$PATH:${ROOTSYS}/bin:/home/xdaqdev/bin:/home/xdaqdev/scripts:/usr/sue/bin:/usr/local/bin:/usr/local/bin/X11:/usr/bin:/bin:/usr/bin/X11:/cern/pro/bin:/usr/kerberos/bin:/usr/X11R6/bin:.
+
+export LD_LIBRARY_PATH=/usr/lib:${ENV_CMS_TK_BASE}/TrackerOnline/2005/dim/linux:${ROOTSYS}/lib:${XDAQ_BASE}/daq/extern/log4cplus/linuxx86/lib:${XDAQ_BASE}/daq/xcept/lib/linux/x86/:${ENV_CMS_TK_FED9U_ROOT}/Fed9UDeviceFactory:${ENV_CMS_TK_FED9U_ROOT}/Fed9UUtils:${ENV_CMS_TK_FED9U_ROOT}/Fed9UDevice:${ROOTSYS}/lib:${ENV_CMS_TK_COMMON}/Analysis:${ENV_CMS_TK_COMMON}/ICUtils:${ENV_CMS_TK_HARDWARE_ROOT}/tracker/lib:${ENV_CMS_TK_FEC_ROOT}/lib/:${ENV_CMS_TK_HAL_ROOT}/lib/linux/x86:${ENV_CMS_TK_CAEN_ROOT}/lib:${XERCESCROOT}/lib:${ENV_CMS_TK_TTC_ROOT}/xdaq:${XDAQ_ROOT}/TriDAS/daq/xdata/lib/linux/x86:${ENV_CMS_TK_DIAG_ROOT}/tools/lib/:${ENV_CMS_TK_APVE_ROOT}/APVE_BASE/:${ENV_CMS_TK_APVE_ROOT}/APVE_XDAQ/:${ENV_CMS_TK_BASE}/TriDAS/RunControl/tools/xdaq2rc/lib/linux/x86/:${ENV_CMS_TK_BASE}/TriDAS/daq/itools/i2ocore-modules/generic_pci_access/:${ENV_CMS_TK_BASE}/TriDAS/daq/itools/packages/xdaq-shell/:${ENV_CMS_TK_BASE}/TriDAS/daq/extern/myrfb/lib:${ENV_CMS_TK_BASE}/TriDAS/daq/fedbuilder/tools/lib/linux/x86/:${ENV_CMS_TK_BASE}/TriDAS/daq/tts/fmm/lib/linux/x86/:${ENV_CMS_TK_BASE}/TriDAS/daq/tts/fmmtd/lib/linux/x86/:${ENV_CMS_TK_BASE}/TriDAS/daq/tts/fmmcontroller/lib/linux/x86:${ENV_CMS_TK_BASE}/TriDAS/daq/tts/fmmtester/lib/linux/x86:${ENV_CMS_TK_BASE}/TriDAS/daq/tts/ttsbase/lib/linux/x86:${ENV_CMS_TK_BASE}/TriDAS/daq/tts/cpcibase/lib/linux/x86:${ENV_CMS_TK_BASE}/TriDAS/daq/tts/utils/lib/linux/x86:${ENV_CMS_TK_BASE}/TriDAS/daq/tts/ipcutils/lib/linux/x86:${ENV_CMS_TK_BASE}/TriDAS/daq/jal/lib/linux/x86
+
+source ${ENV_CMS_TK_FEC_ROOT}/config/oracle.env.bash
+export ENV_CMS_TK_ORACLE_HOME=${ENV_ORACLE_HOME}
+
+export TTCCIBUSADAPTER=CAENPCI

@@ -1,0 +1,45 @@
+* on olzem@TRACKERLAS-S5F01-20:
+  cd /cmsnfshome0/nfshome0/wittmer/LAS
+  # this is the content of /cmsnfshome0/nfshome0/wittmer/start_xdaq_LAS.sh
+  csh
+  setenv XDAQ_ROOT /opt/xdaq
+  setenv XDAQ_OS linux
+  setenv XDAQ_PLATFORM x86_slc4
+  setenv XDAQ_DOCUMENT_ROOT $XDAQ_ROOT/htdocs
+  source /opt/xdaq/bin/environment.csh
+  /opt/xdaq/bin//xdaq.sh -p 40000 -c LAS_config.xml
+
+* on cmsusr2, run firefox and go to
+  http://trackerlas-s5f01-20.cms:40000/urn:xdaq-application:service=hyperdaq
+  (bookmarked)
+
+
+* daq monitoring
+ http://cmsonline.cern.ch/daqStatusSCX/aDAQmon/DAQstatusGre.jpg
+
+* list of files:
+/nfshome0/olzem/delay_scan_300.las
+/nfshome0/olzem/delay_scan_600.las
+/nfshome0/olzem/delay_scan_900.las
+/nfshome0/olzem/delay_scan_1200.las
+/nfshome0/olzem/delay_scan_1500.las
+/nfshome0/olzem/delay_scan_1800.las
+
+Procedure for fine delay scans
+
+1 Start XDAQ applications 
+2 Set Trigger Board delay to 30 
+3 Set Trigger Board to 'Test Mode On'
+4 Load the file for a given pulse intensity into each board 
+5 Perform 'StartLdSeq' and 'RunMode ON' for each board 
+6 Set Trigger Board to 'Test Mode Off' 
+7 Wait until all triggers have been collected 
+
+Repeat steps 3. to 7. for every intensity 
+
+
+**************************************************************
+Procedure for commissioning scans:
+/opt/xdaq/bin//xdaq.sh -p 40000 -c LAS_config_Commissioner.xml 2> scans.log
+
+**************
